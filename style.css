@@ -1,0 +1,260 @@
+/* ==========================================================
+   AuKLM — style.css
+   Feuille de style COMMUNE aux 4 pages (index, carte, a-propos,
+   politique-confidentialite). Toute modif ici s'applique partout.
+   La police Fredoka est chargée via <link> dans le <head> de
+   chaque page HTML (voir commentaire dans chaque fichier) pour
+   éviter le blocage de rendu causé par @import.
+   ========================================================== */
+
+:root {
+    --teal: #A8DADC;
+    --dark: #0D162B;
+    --navy: #1A2B56;
+    --font-display: 'Fredoka', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Pages centrées par défaut ; la politique de confidentialité
+   passe en lecture alignée à gauche via .align-left sur <body> */
+body:not(.align-left) {
+    text-align: center;
+}
+
+body.align-left .container {
+    text-align: left;
+}
+
+/* ---------- Menu burger (identique sur les 4 pages) ---------- */
+#burger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10001;
+    cursor: pointer;
+    background: rgba(26, 43, 86, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--teal);
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--teal);
+    margin: 5px 0;
+}
+
+#menu-overlay {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--navy);
+    z-index: 10000;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu-overlay a {
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#menu-overlay .menu-close {
+    margin-top: 40px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+/* ---------- Conteneur générique ---------- */
+.container {
+    padding: 40px 20px;
+    max-width: 1100px;
+    width: 90%;
+}
+
+.footer {
+    margin-top: auto;
+    padding: 40px 0;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
+}
+
+/* ---------- Bandeau cookies (UNIQUE sur les 4 pages) ---------- */
+#cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background: rgba(26, 43, 86, 0.95);
+    border: 1px solid var(--teal);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    z-index: 9999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: none;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+#cookie-banner p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: white;
+}
+
+#cookie-banner .cookie-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-cookie-accept {
+    background: var(--teal);
+    color: var(--navy);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.btn-cookie-deny {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+h1 {
+    font-family: var(--font-display);
+}
+
+/* ---------- Boutons génériques réutilisés sur plusieurs pages ---------- */
+.btn-main, .btn-action, .btn-submit {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 15px 35px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.05rem;
+    font-family: var(--font-display);
+}
+
+.btn-main:hover, .btn-action:hover, .btn-submit:hover {
+    transform: scale(1.05);
+}
+
+.back-link {
+    display: inline-block;
+    margin: 40px 0;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.quick-faq {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(168, 218, 220, 0.15);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 40px 0 30px;
+}
+
+.quick-faq h3 {
+    color: var(--teal);
+    margin: 0 0 15px;
+    font-size: 1.1rem;
+}
+
+.quick-faq-item {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.quick-faq-item strong {
+    color: var(--teal);
+}
+
+.quick-faq .btn-main {
+    margin-top: 20px;
+}
+
+.quick-faq-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 2px;
+}
+
+.quick-faq-link::after {
+    content: " →";
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+.quick-faq-link:hover {
+    opacity: 0.7;
+    transform: translateX(2px);
+    transition: 0.2s;
+}
+
+@media (max-width: 480px) {
+    .quick-faq {
+        padding: 15px;
+    }
+
+    .quick-faq h3 {
+        font-size: 1rem;
+    }
+}

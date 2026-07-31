@@ -1,0 +1,39 @@
+# robots.txt for AuKLM
+# Respecte les règles crawl tout en autorisant les LLM de référence
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.pdf$
+Crawl-delay: 1
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# OpenAI GPT crawlers
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+# Anthropic Claude (si présent)
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 1
+
+# Other LLM crawlers
+User-agent: CCBot
+Allow: /
+Crawl-delay: 1
+
+# Meta's crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter/X
+User-agent: Twitterbot
+Allow: /
+
+# Sitemap
+Sitemap: https://auklm.app/sitemap.xml

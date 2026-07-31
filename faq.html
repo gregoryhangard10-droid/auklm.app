@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        // Chargement différé de Google Tag Manager (perf) : le script
+        // n'est pas nécessaire pour l'affichage initial de la page.
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | AuKLM</title>
+    <meta name="description" content="Questions fréquentes sur AuKLM — l'observatoire citoyen des nuisances sonores.">
+    <meta property="og:title" content="FAQ | AuKLM">
+    <meta property="og:description" content="Trouvez les réponses à vos questions sur AuKLM.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/faq.html">
+    <link rel="canonical" href="https://auklm.app/faq.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "name": "FAQ — AuKLM",
+        "url": "https://auklm.app/faq.html",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "C'est quoi AuKLM ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AuKLM est un observatoire citoyen de la qualité sonore. C'est une carte collaborative où chacun peut signaler son ressenti face aux nuisances sonores."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "C'est gratuit ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Complètement gratuit. Il n'y a pas d'abonnement, pas de limite, pas de frais cachés."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "C'est vraiment anonyme ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Oui, totalement. Vos signalements ne demandent ni nom ni email. Votre position est arrondie au niveau de la ville ou arrondissement."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        .container {
+            max-width: 700px;
+        }
+
+        h1 {
+            color: var(--teal);
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(168, 218, 220, 0.2);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--teal);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question::before {
+            content: "▶ ";
+            margin-right: 8px;
+            font-size: 0.8em;
+            transition: 0.2s;
+        }
+
+        .faq-item.open .faq-question::before {
+            content: "▼ ";
+        }
+
+        .faq-answer {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.3s;
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-answer {
+            opacity: 1;
+            max-height: 1000px;
+        }
+
+        .faq-answer a {
+            color: var(--teal);
+            text-decoration: underline;
+        }
+
+        .faq-answer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .faq-question {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>FAQ</h1>
+        <p class="subtitle">Vos questions, nos réponses.</p>
+
+        <div class="faq-item">
+            <div class="faq-question">C'est quoi AuKLM ?</div>
+            <div class="faq-answer">
+                AuKLM est un observatoire citoyen de la qualité sonore. C'est une carte collaborative où chacun peut signaler son ressenti face au bruit — une terrasse bruyante, un chantier, l'héliport, des deux-roues débridés, etc. Plus il y a de contributions, plus on crée une ressource collective utile pour comprendre les zones calmes et les zones animées.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Je peux aussi signaler un endroit calme ?</div>
+            <div class="faq-answer">
+                Oui, et c'est même encouragé ! AuKLM ne sert pas qu'à signaler des nuisances : quand vous choisissez "Ça va 😌" dans le formulaire, vous documentez un endroit calme et serein. C'est précieux pour repérer les coins tranquilles où travailler, se concentrer ou simplement souffler — pas seulement les zones à éviter.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">C'est gratuit ?</div>
+            <div class="faq-answer">
+                Complètement gratuit. Il n'y a pas d'abonnement, pas de limite, pas de frais cachés. AuKLM est un projet bénévole, créé pour servir l'intérêt public.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">C'est vraiment anonyme ?</div>
+            <div class="faq-answer">
+                Oui, totalement. Vos signalements ne demandent ni nom ni email. Votre position est arrondie (affichée au niveau de la ville ou arrondissement, pas à l'adresse exacte). Vous restez complètement invisible.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Qu'est-ce que vous faites avec mes signalements ?</div>
+            <div class="faq-answer">
+                Vos signalements alimentent la CartoKLM — une carte collaborative publique. Aucune donnée personnelle n'est conservée. Les données agrégées peuvent servir à sensibiliser les élus, Bruitparif et les collectifs anti-bruit sur les vrais problèmes sonores du terrain.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Comment ça marche en trois étapes ?</div>
+            <div class="faq-answer">
+                1. Cliquez sur "Signaler" sur la page d'accueil. <br>
+                2. Donnez votre ressenti : "Ça va" 🟢, "Gênant" 🟡, ou "Insupportable" 🔴. Décrivez la source (terrasse, chantier, etc.) et votre quartier. <br>
+                3. Envoyez — c'est enregistré sur la carte, anonymement.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Y a-t-il un testeur de décibels ?</div>
+            <div class="faq-answer">
+                Oui, en bêta. Il mesure le bruit ambiant via le microphone de votre téléphone avec une pondération de type A (comme les vrais sonomètres). C'est indicatif — ça ne remplace pas un appareil professionnel, mais ça vous donne un ordre de grandeur. Vous pouvez inclure ce résultat dans votre signalement si vous le souhaitez.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Mes données sont-elles stockées ou revendues ?</div>
+            <div class="faq-answer">
+                Non. Nous ne conservons que votre ressenti (gêne) et votre zone (ville/arrondissement). Pas de nom, pas d'email, pas de position précise. Les données ne sont jamais vendues. Elles servent uniquement à alimenter la carte collaborative et à mieux comprendre les problèmes sonores locaux.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Qui peut utiliser AuKLM ?</div>
+            <div class="faq-answer">
+                Tout le monde — que vous soyez sensible au bruit, misophones, atteints d'acouphènes, ou juste curieux de votre environnement sonore. AuKLM n'est pas réservé à une catégorie spécifique : c'est une ressource collective.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Comment voir la carte des signalements ?</div>
+            <div class="faq-answer">
+                Cliquez sur "CartoKLM" dans le menu. Vous verrez tous les signalements agrégés : points verts (ça va), jaunes (gênant), rouges (insupportable). C'est mis à jour en temps réel.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Pourquoi "ici et maintenant" ?</div>
+            <div class="faq-answer">
+                Parce qu'AuKLM capture votre ressenti du moment, du lieu exact où vous êtes. C'est pas une étude théorique — c'est la réalité vécue par les habitants. "Ici et maintenant" résume cette philosophie : votre avis compte, là où vous êtes, à cet instant.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">AuKLM remplace-t-il un sonomètre professionnel ?</div>
+            <div class="faq-answer">
+                Non. Le testeur de dB dans AuKLM est indicatif, basé sur le microphone de votre téléphone. Pour une mesure officielle (réglementaire, légale), vous avez besoin d'un sonomètre calibré. AuKLM complète les données officielles avec la réalité vécue du terrain.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Comment vous soutenez les collectifs anti-bruit ?</div>
+            <div class="faq-answer">
+                AuKLM fournit une ressource collaborative gratuite que les collectifs comme Droit au Sommeil ou Réseau Vivre Paris peuvent utiliser pour documenter les nuisances et amplifier leurs demandes auprès des élus. Nous les recommandons aussi et créons du lien entre citoyens et organisations établies.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Je ne trouve pas la réponse à ma question.</div>
+            <div class="faq-answer">
+                Pas de souci ! <a href="contact.html">Contactez-nous</a> directement via le formulaire. Nous répondons à toutes les demandes.
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center;">
+            <p style="opacity: 0.9; margin-bottom: 15px;">Vous voulez approfondir vos connaissances sur le bruit et la santé ?</p>
+            <a href="bruit-prevention-sante.html" class="btn-main">Lire notre guide complet</a>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">Cartes d'Europe</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">
+            © 2026 AUKLM.APP — LES DONNÉES AU SERVICE DU CALME
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        // Chargement différé de Google Tag Manager (perf) : le script
+        // n'est pas nécessaire pour l'affichage initial de la page.
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuKLM | Signalez le bruit... ou le calme</title>
+    <meta name="description" content="Signalez en un clic le bruit qui vous gêne, ou partagez un endroit calme et serein. Carte collaborative citoyenne du bruit et du calme. Testeur de décibels bêta inclus.">
+    <meta property="og:title" content="AuKLM | La météo du bruit">
+    <meta property="og:description" content="Mesurez et partagez le bruit — ou le calme — autour de vous sur la carte collaborative citoyenne.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/">
+    <link rel="canonical" href="https://auklm.app/">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AuKLM",
+        "url": "https://auklm.app",
+        "logo": "https://auklm.app/favicon.png",
+        "description": "Observatoire citoyen participatif de la pollution sonore. Signalez les nuisances sonores, consultez la carte collaborative, découvrez les ressources anti-bruit.",
+        "sameAs": [],
+        "contact": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "email": "gregoryhangard@gmail.com"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "AuKLM — L'observatoire citoyen des nuisances sonores",
+        "url": "https://auklm.app/",
+        "description": "Signalez les nuisances sonores, consultez la carte collaborative, découvrez les ressources anti-bruit.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "AuKLM",
+            "url": "https://auklm.app"
+        }
+    }
+    </script>
+
+    <style>
+        /* Styles spécifiques à cette page uniquement */
+        .container {
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        h1 span {
+            color: var(--teal);
+        }
+
+        .pitch {
+            opacity: 0.8;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .pitch strong {
+            color: var(--teal);
+        }
+
+        #sound-meter {
+            background: rgba(168, 218, 220, 0.05);
+            border: 2px dashed var(--teal);
+            padding: 40px 20px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        #db-value {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--teal);
+            display: block;
+            line-height: 1;
+        }
+
+        #status-text {
+            margin-top: 15px;
+            font-weight: 400;
+            font-style: italic;
+            min-height: 1.5em;
+            color: var(--teal);
+        }
+
+        #advice-text {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            color: #eee;
+            min-height: 1em;
+        }
+
+        .oms-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            font-size: 0.65rem;
+        }
+
+        .scale-point {
+            flex: 1;
+            padding: 8px 4px;
+            border-radius: 8px;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .scale-point.active {
+            opacity: 1;
+            transform: scale(1.05);
+            font-weight: bold;
+        }
+
+        .quiet { background: #457B9D; }
+        .moderate { background: var(--teal); color: var(--dark); }
+        .high { background: #FFB347; color: var(--dark); }
+        .danger { background: #E63946; }
+
+        #result-certificate {
+            display: none;
+            background: white;
+            color: black;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .signup-form {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        input, select {
+            padding: 16px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.07);
+            color: white;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        select option {
+            background: var(--navy);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            text-align: left;
+            font-size: 0.75rem;
+            margin: 10px 0;
+            opacity: 0.8;
+        }
+
+        .btn-submit {
+            width: 100%;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(168, 218, 220, 0.2);
+        }
+
+        /* ---------- Vote de gêne (bloc principal Option B) ---------- */
+        .gene-question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-family: var(--font-display);
+            margin-bottom: 20px;
+        }
+
+        .gene-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .gene-btn {
+            flex: 1;
+            border: none;
+            border-radius: 24px;
+            padding: 26px 8px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+            white-space: nowrap;
+        }
+
+        .gene-emoji {
+            font-size: 2.2rem;
+            line-height: 1;
+            transition: transform 0.15s ease;
+        }
+
+        .gene-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 0 rgba(0,0,0,0.15);
+        }
+
+        .gene-btn:hover .gene-emoji {
+            transform: scale(1.15) rotate(-4deg);
+        }
+
+        .gene-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+        }
+
+        .gene-btn.selected {
+            outline: 3px solid white;
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        @media (max-width: 480px) {
+            .gene-btn {
+                font-size: 0.85rem;
+                padding: 22px 6px 16px;
+            }
+        }
+
+        .gene-calme { background: linear-gradient(160deg, #8CE47E 0%, #6ECB63 100%); }
+        .gene-genant { background: linear-gradient(160deg, #FFC96B 0%, #FFB347 100%); }
+        .gene-insupportable { background: linear-gradient(160deg, #F16470 0%, #E63946 100%); color: white; }
+
+        #gene-details {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        #gene-selected-label {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.05rem;
+            color: var(--teal);
+        }
+
+        #geo-status {
+            font-size: 0.8rem;
+            opacity: 0.75;
+            text-align: left;
+        }
+
+        #gene-status {
+            text-align: center;
+        }
+
+        /* ---------- Section bêta décibels (secondaire) ---------- */
+        #db-meter-details {
+            margin-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        #db-meter-details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--teal);
+            margin-bottom: 15px;
+            text-align: center;
+            list-style: none;
+        }
+
+        .db-disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.65;
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        #clip-warning {
+            display: none;
+            background: rgba(230, 57, 70, 0.15);
+            border: 1px solid #E63946;
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>Au<span>KLM</span></h1>
+        <h2 class="pitch">L'<strong>observatoire citoyen</strong> du bruit — et du calme. Partagez votre ressenti en un clic.</h2>
+
+        <div id="gene-section">
+            <p class="gene-question">Comment jugez-vous le bruit ici, maintenant ?</p>
+            <div class="gene-buttons">
+                <button class="gene-btn gene-calme" data-gene="Calme"><span class="gene-emoji">😌</span>Ça va</button>
+                <button class="gene-btn gene-genant" data-gene="Gênant"><span class="gene-emoji">😬</span>Gênant</button>
+                <button class="gene-btn gene-insupportable" data-gene="Insupportable"><span class="gene-emoji">🤯</span>Insupportable</button>
+            </div>
+        </div>
+
+        <div id="gene-details">
+            <div id="gene-selected-label"></div>
+
+            <select id="source_bruit" required>
+                <option value="" disabled selected>Quelle est la source ?</option>
+            </select>
+
+            <input type="text" id="commentaire" placeholder="Un détail ? (optionnel)" maxlength="140">
+
+            <div id="geo-status">📍 Localisation en cours…</div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="consent-check" required>
+                <label>Je consens à la publication anonyme de ce signalement (RGPD). La position est arrondie pour préserver votre vie privée.</label>
+            </div>
+
+            <button id="submit-gene" class="btn-submit">📍 Envoyer mon signalement</button>
+            <div id="gene-status"></div>
+        </div>
+
+        <details id="db-meter-details">
+            <summary>🎙️ Testeur de bruit (bêta indicatif)</summary>
+
+            <div id="sound-meter">
+                <div id="timer-display" style="display:none; color:var(--teal); margin-bottom:10px; font-weight: bold;">ANALYSE : <span id="seconds">10</span>s</div>
+                <span id="db-value">0</span><small>dB(A) approx.</small>
+                <div id="status-text">Prêt pour le test ?</div>
+                <div id="advice-text"></div>
+                <button id="start-mic" class="btn-submit" style="margin-top:20px;">Lancer la mesure</button>
+                <div id="clip-warning">⚠️ Micro saturé pendant la mesure : la valeur est sous-estimée, éloignez-vous de la source.</div>
+            </div>
+
+            <div class="oms-scale">
+                <div class="scale-point quiet" id="scale-1">&lt; 45dB<br>Calme</div>
+                <div class="scale-point moderate" id="scale-2">45-65dB<br>Normal</div>
+                <div class="scale-point high" id="scale-3">65-80dB<br>Élevé</div>
+                <div class="scale-point danger" id="scale-4">&gt; 80dB<br>Danger</div>
+            </div>
+
+            <p class="db-disclaimer">Mesure indicative non calibrée, basée sur le micro de votre appareil avec pondération fréquentielle de type A. Elle ne remplace pas un sonomètre professionnel. Vous pouvez inclure ce résultat dans le champ commentaire de votre signalement si vous le souhaitez.</p>
+        </details>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="opacity: 0.9; margin-bottom: 15px;">Prêt à documenter votre ressenti ?</p>
+            <a href="carte.html" class="btn-main">Découvrir la CartoKLM</a>
+        </div>
+
+        <h2 style="color: var(--teal); text-align: center; margin-top: 50px; margin-bottom: 30px; font-size: 1.3rem;">Explorer AuKLM</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px;">
+            <div style="background: rgba(168, 218, 220, 0.08); border: 1px solid rgba(168, 218, 220, 0.15); border-radius: 12px; padding: 20px; text-align: center;">
+                <h3 style="color: var(--teal); margin-top: 0;">📚 Comprendre le bruit</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin: 15px 0;">Découvrez les impacts du bruit sur la santé et apprenez comment vous protéger.</p>
+                <a href="bruit-prevention-sante.html" class="btn-main" style="display: inline-block;">Lire le guide</a>
+            </div>
+
+            <div style="background: rgba(168, 218, 220, 0.08); border: 1px solid rgba(168, 218, 220, 0.15); border-radius: 12px; padding: 20px; text-align: center;">
+                <h3 style="color: var(--teal); margin-top: 0;">🗺️ Explorer les cartes</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin: 15px 0;">Consultez les cartes de bruit en France et en Europe pour connaître votre environnement.</p>
+                <a href="cartes-europe.html" class="btn-main" style="display: inline-block;">Voir les cartes</a>
+            </div>
+
+            <div style="background: rgba(168, 218, 220, 0.08); border: 1px solid rgba(168, 218, 220, 0.15); border-radius: 12px; padding: 20px; text-align: center;">
+                <h3 style="color: var(--teal); margin-top: 0;">🤝 Agir collectivement</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin: 15px 0;">Découvrez les collectifs anti-bruit et rejoignez le mouvement pour le droit au calme.</p>
+                <a href="ressources.html" class="btn-main" style="display: inline-block;">Trouver du soutien</a>
+            </div>
+        </div>
+
+        <div class="quick-faq" style="margin-top: 20px;">
+            <h3>Questions rapides</h3>
+            <div class="quick-faq-item"><strong>C'est gratuit ?</strong> Oui, complètement. Aucun frais, aucun abonnement.</div>
+            <div class="quick-faq-item"><strong>C'est anonyme ?</strong> Totalement. Pas de nom, pas d'email, pas de position exacte — juste votre avis.</div>
+            <div class="quick-faq-item"><strong>Qu'est-ce qu'on fait avec mes données ?</strong> Aucune donnée personnelle n'est conservée. Vos signalements alimentent la CartoKLM, anonymement.</div>
+            <a href="faq.html" class="btn-main">Voir la FAQ complète</a>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">Cartes d'Europe</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">© 2026 AUKLM.APP — LA MÉTÉO DU BRUIT</div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        /* ==========================================================
+           BLOC 1 — Vote de gêne (Option B, formulaire principal)
+           Cascade de localisation entièrement automatique :
+           1) GPS navigateur (si autorisé), arrondi ~110m
+           2) Géolocalisation par IP (aucune autorisation nécessaire)
+           3) Envoi malgré tout si les deux échouent — jamais bloqué
+           ========================================================== */
+
+        // Remplace cette URL par celle de ton déploiement Apps Script
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMuYwr2ZcRTzuVMdFycMBU59a-lJL8PfeM7Tif9ghu9U43Uge5-Q8DJ7U8D1Dw14JWvQ/exec";
+
+        let selectedGene = null;
+        let coords = { lat: null, lng: null, source: 'aucune' };
+        let geoResolved = false; // devient true dès qu'une tentative (réussie ou non) est terminée
+
+        const geoStatus = document.getElementById('geo-status');
+        const geneDetails = document.getElementById('gene-details');
+        const geneLabel = document.getElementById('gene-selected-label');
+        const geneStatus = document.getElementById('gene-status');
+
+        function roundCoord(value) {
+            return Math.round(value * 1000) / 1000;
+        }
+
+        // Options du menu déroulant : différentes selon qu'on signale
+        // un lieu calme (positif) ou un lieu gênant/insupportable (négatif).
+        const sourceOptions = {
+            positive: [
+                { value: '', label: 'Quel type de lieu ?', disabled: true },
+                { value: 'Parc / espace vert', label: 'Parc / espace vert' },
+                { value: 'Rue résidentielle', label: 'Rue résidentielle' },
+                { value: 'Bibliothèque / café calme', label: 'Bibliothèque / café calme' },
+                { value: 'Intérieur silencieux', label: 'Intérieur silencieux' },
+                { value: 'Autre', label: 'Autre' }
+            ],
+            negative: [
+                { value: '', label: 'Quelle est la source ?', disabled: true },
+                { value: 'Bar / terrasse', label: 'Bar / terrasse' },
+                { value: 'Deux-roues', label: 'Deux-roues' },
+                { value: 'Travaux', label: 'Travaux' },
+                { value: 'Circulation', label: 'Circulation' },
+                { value: 'Voisinage', label: 'Voisinage' },
+                { value: 'Autre', label: 'Autre' }
+            ]
+        };
+
+        function updateSourceOptions(gene) {
+            const select = document.getElementById('source_bruit');
+            const list = gene === 'Calme' ? sourceOptions.positive : sourceOptions.negative;
+            select.innerHTML = '';
+            list.forEach(function (opt) {
+                const el = document.createElement('option');
+                el.value = opt.value;
+                el.textContent = opt.label;
+                if (opt.disabled) {
+                    el.disabled = true;
+                    el.selected = true;
+                }
+                select.appendChild(el);
+            });
+        }
+
+        // Étape 3 (dernier recours) : on marque juste que la position est inconnue
+        function resolveWithoutLocation() {
+            coords.source = 'aucune';
+            geoStatus.innerText = "📍 Position non déterminée — le signalement sera envoyé sans coordonnées précises.";
+            geoResolved = true;
+        }
+
+        // Étape 2 : géolocalisation approximative par IP (aucune permission requise)
+        function resolveWithIp() {
+            fetch('https://ipapi.co/json/')
+                .then(r => r.json())
+                .then(data => {
+                    if (data && data.latitude && data.longitude) {
+                        coords.lat = roundCoord(data.latitude);
+                        coords.lng = roundCoord(data.longitude);
+                        coords.source = 'ip';
+                        geoStatus.innerText = "📍 Position approximative détectée automatiquement (précision quartier/ville).";
+                    } else {
+                        resolveWithoutLocation();
+                    }
+                    geoResolved = true;
+                })
+                .catch(resolveWithoutLocation);
+        }
+
+        // Étape 1 : GPS précis du navigateur
+        function requestGeolocation() {
+            geoStatus.innerText = "📍 Localisation en cours…";
+            if (!navigator.geolocation) {
+                resolveWithIp();
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                function (pos) {
+                    coords.lat = roundCoord(pos.coords.latitude);
+                    coords.lng = roundCoord(pos.coords.longitude);
+                    coords.source = 'gps';
+                    geoStatus.innerText = "📍 Position précise détectée (arrondie pour votre vie privée).";
+                    geoResolved = true;
+                },
+                function () {
+                    // Refusé ou indisponible -> on bascule automatiquement sur l'IP
+                    resolveWithIp();
+                },
+                { timeout: 6000 }
+            );
+        }
+
+        document.querySelectorAll('.gene-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.gene-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedGene = btn.dataset.gene;
+                geneLabel.innerText = "Signalement : " + selectedGene;
+                updateSourceOptions(selectedGene);
+                geneDetails.style.display = 'flex';
+                if (!geoResolved) requestGeolocation();
+                geneDetails.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        document.getElementById('submit-gene').addEventListener('click', function () {
+            const source = document.getElementById('source_bruit').value;
+            const consent = document.getElementById('consent-check').checked;
+
+            if (!selectedGene) { geneStatus.innerHTML = "❌ Choisissez d'abord comment vous ressentez ce lieu."; return; }
+            if (!source) {
+                geneStatus.innerHTML = (selectedGene === 'Calme') ? "❌ Précisez le type de lieu." : "❌ Précisez la source du bruit.";
+                return;
+            }
+            if (!consent) { geneStatus.innerHTML = "❌ Le consentement RGPD est requis."; return; }
+
+            geneStatus.style.color = "white";
+            geneStatus.innerHTML = "Envoi en cours...";
+
+            const payload = new URLSearchParams();
+            payload.append('niveau_gene', selectedGene);
+            payload.append('source_bruit', source);
+            payload.append('commentaire', document.getElementById('commentaire').value);
+            payload.append('latitude', coords.lat ?? '');
+            payload.append('longitude', coords.lng ?? '');
+            payload.append('geo_source', coords.source);
+
+            // mode "no-cors" : on ne peut pas lire la réponse d'Apps Script,
+            // mais l'envoi fonctionne bien — on affiche une confirmation
+            // optimiste et on ne bloque que sur un vrai échec réseau.
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: payload,
+                mode: 'no-cors'
+            }).then(function () {
+                geneStatus.style.color = "#6ECB63";
+                geneStatus.innerHTML = "✅ Merci ! Votre signalement a bien été envoyé.<br><br><a href='carte.html' style='color: var(--teal); text-decoration: underline; font-weight: bold;'>Et retrouvez votre signalement sur la CartoKLM →</a>";
+                document.getElementById('commentaire').value = '';
+            }).catch(function () {
+                geneStatus.style.color = "#E63946";
+                geneStatus.innerHTML = "❌ Erreur de connexion, réessayez.";
+            });
+        });
+
+        /* ==========================================================
+           BLOC 2 — Testeur de décibels bêta (secondaire, amélioré)
+           - Pondération fréquentielle de type A (approximation dBA)
+           - Détection de saturation du micro
+           - Médiane sur la fenêtre de mesure plutôt que moyenne brute
+           ========================================================== */
+        let audioContext, analyser, microphone, javascriptNode;
+        let dbFrames = [];
+        let clipFrameCount = 0;
+        let totalFrameCount = 0;
+
+        const startBtn = document.getElementById('start-mic');
+        const dbDisplay = document.getElementById('db-value');
+        const statusText = document.getElementById('status-text');
+        const adviceText = document.getElementById('advice-text');
+        const timerDisplay = document.getElementById('timer-display');
+        const secondsDisplay = document.getElementById('seconds');
+        const clipWarning = document.getElementById('clip-warning');
+
+        // Décalage de calibration empirique : les micros de smartphone ne sont
+        // pas calibrés en dB SPL absolu. Cette valeur rapproche le résultat
+        // affiché de l'échelle OMS utilisée ci-dessous, mais reste indicative.
+        const CALIBRATION_OFFSET = 100;
+
+        // Pondération fréquentielle de type A (approximation de la norme CEI 61672)
+        function aWeightingGain(f) {
+            const f2 = f * f;
+            const c1 = 12194.217 * 12194.217;
+            const num = c1 * f2 * f2;
+            const den = (f2 + 20.598997 * 20.598997) *
+                        Math.sqrt((f2 + 107.65265 * 107.65265) * (f2 + 737.86223 * 737.86223)) *
+                        (f2 + c1);
+            return num / den;
+        }
+
+        function updateScale(db) {
+            document.querySelectorAll('.scale-point').forEach(el => el.classList.remove('active'));
+            if (db < 45) document.getElementById('scale-1').classList.add('active');
+            else if (db < 65) document.getElementById('scale-2').classList.add('active');
+            else if (db < 80) document.getElementById('scale-3').classList.add('active');
+            else document.getElementById('scale-4').classList.add('active');
+        }
+
+        function getVerdict(db) {
+            if (db < 45) return { v: "Calme absolu 🤫", a: "Idéal pour le repos et la concentration." };
+            if (db < 65) return { v: "Ambiance paisible ✅", a: "Niveau sonore urbain très acceptable." };
+            if (db < 80) return { v: "Nuisance marquée ⚠️", a: "Attention : l'exposition prolongée fatigue l'organisme." };
+            return { v: "Danger auditif 🚨", a: "Risque de dommages irréversibles. Éloignez-vous !" };
+        }
+
+        function median(arr) {
+            const sorted = [...arr].sort((a, b) => a - b);
+            const mid = Math.floor(sorted.length / 2);
+            return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+        }
+
+        startBtn.onclick = function () {
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                microphone = audioContext.createMediaStreamSource(stream);
+                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+                dbFrames = [];
+                clipFrameCount = 0;
+                totalFrameCount = 0;
+                let timeLeft = 10;
+
+                startBtn.style.display = 'none';
+                timerDisplay.style.display = 'block';
+                statusText.innerText = "Analyse en cours...";
+                adviceText.innerText = "";
+                clipWarning.style.display = 'none';
+
+                microphone.connect(analyser);
+                analyser.connect(javascriptNode);
+                javascriptNode.connect(audioContext.destination);
+
+                const freqData = new Float32Array(analyser.frequencyBinCount);
+                const timeData = new Uint8Array(analyser.fftSize);
+                const sampleRate = audioContext.sampleRate;
+                const binHz = sampleRate / analyser.fftSize;
+
+                javascriptNode.onaudioprocess = function () {
+                    // --- Détection de saturation (clipping) sur le signal temporel ---
+                    analyser.getByteTimeDomainData(timeData);
+                    let clippedSamples = 0;
+                    for (let i = 0; i < timeData.length; i++) {
+                        if (timeData[i] <= 2 || timeData[i] >= 253) clippedSamples++;
+                    }
+                    totalFrameCount++;
+                    if (clippedSamples / timeData.length > 0.02) clipFrameCount++;
+
+                    // --- Calcul pondéré type A sur le spectre fréquentiel ---
+                    analyser.getFloatFrequencyData(freqData);
+                    let weightedEnergy = 0;
+                    for (let i = 1; i < freqData.length; i++) {
+                        const freq = i * binHz;
+                        const magnitude = Math.pow(10, freqData[i] / 20);
+                        const gain = aWeightingGain(freq);
+                        const weighted = magnitude * Math.sqrt(gain);
+                        weightedEnergy += weighted * weighted;
+                    }
+                    const dbA = 10 * Math.log10(weightedEnergy || 1e-12) + CALIBRATION_OFFSET;
+                    const displayDb = Math.max(0, Math.round(dbA));
+
+                    dbDisplay.innerText = displayDb;
+                    dbFrames.push(displayDb);
+                    updateScale(displayDb);
+                };
+
+                let countdown = setInterval(function () {
+                    timeLeft--;
+                    secondsDisplay.innerText = timeLeft;
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        stream.getTracks().forEach(t => t.stop());
+                        javascriptNode.disconnect();
+
+                        const isClipped = totalFrameCount > 0 && (clipFrameCount / totalFrameCount) > 0.1;
+                        let finalValue = dbFrames.length ? Math.round(median(dbFrames)) : 0;
+
+                        if (isClipped) {
+                            clipWarning.style.display = 'block';
+                            dbDisplay.innerText = finalValue + "+";
+                        } else {
+                            dbDisplay.innerText = finalValue;
+                        }
+
+                        timerDisplay.style.display = 'none';
+                        updateScale(finalValue);
+
+                        const result = getVerdict(finalValue);
+                        statusText.innerHTML = `<strong>${result.v}</strong>`;
+                        adviceText.innerText = result.a;
+
+                        startBtn.innerText = "Refaire une mesure";
+                        startBtn.style.display = 'inline-block';
+                    }
+                }, 1000);
+            }).catch(() => { statusText.innerText = "Micro non détecté."; });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        // Chargement différé de Google Tag Manager (perf) : le script
+        // n'est pas nécessaire pour l'affichage initial de la page.
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruit et Santé | Comprendre, Prévenir, Agir | AuKLM</title>
+    <meta name="description" content="Le bruit est le deuxième facteur de risque environnemental en Europe. Découvrez ses impacts sur la santé, les seuils de danger et les conseils pratiques pour vous protéger.">
+    <meta property="og:title" content="Bruit et Santé | AuKLM">
+    <meta property="og:description" content="Impacts du bruit sur la santé, conseils de prévention et ressources officielles.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/bruit-prevention-sante.html">
+    <link rel="canonical" href="https://auklm.app/bruit-prevention-sante.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Bruit et Santé — Prévention | AuKLM",
+        "url": "https://auklm.app/bruit-prevention-sante.html",
+        "description": "Impacts du bruit sur la santé, seuils de danger, conseils pratiques et ressources officielles.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "AuKLM",
+            "url": "https://auklm.app"
+        }
+    }
+    </script>
+
+    <style>
+        .container {
+            max-width: 700px;
+        }
+
+        h1 {
+            color: var(--teal);
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+
+        .alert-box {
+            background: rgba(255, 107, 107, 0.08);
+            border-left: 4px solid #ff6b6b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .alert-box strong {
+            color: #ff6b6b;
+        }
+
+        .section-title {
+            color: var(--teal);
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(168, 218, 220, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .impact-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(168, 218, 220, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .impact-item h3 {
+            color: var(--teal);
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+        }
+
+        .impact-item p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: rgba(168, 218, 220, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .source {
+            font-size: 0.9rem;
+            opacity: 0.75;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .advice-box {
+            background: rgba(168, 218, 220, 0.08);
+            border: 1px solid rgba(168, 218, 220, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .advice-box strong {
+            color: var(--teal);
+        }
+
+        .scale {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+
+        .resources-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resources-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(168, 218, 220, 0.1);
+            line-height: 1.6;
+        }
+
+        .resources-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resources-list strong {
+            color: var(--teal);
+        }
+
+        @media (max-width: 480px) {
+            .impact-item, .advice-box {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>Bruit & Santé</h1>
+        <p class="subtitle">Comprendre, prévenir et agir pour votre bien-être sonore.</p>
+
+        <div class="advice-box">
+            <p>Le bruit affecte notre sommeil, notre concentration et notre santé. Bonne nouvelle : <strong>la plupart des solutions sont simples, accessibles et efficaces.</strong> Cette page vous explique comment protéger votre audition et créer des espaces de calme au quotidien.</p>
+        </div>
+
+        <h2 class="section-title">📊 Comprendre l'impact du bruit sur votre santé</h2>
+
+        <h2 class="section-title">📊 Les impacts du bruit sur votre santé</h2>
+
+        <div class="impact-item">
+            <h3>🛌 Le sommeil : protéger vos nuits</h3>
+            <p>Le sommeil est votre meilleur allié pour la santé. Le bruit peut le fragmenter en créant des <strong>micro-éveils</strong> — souvent imperceptibles — qui réduisent la qualité de votre récupération.</p>
+            <p><strong>Concrètement :</strong> si vous vous endormez mal, vous vous sentez fatigué le lendemain, moins concentré, plus irritable. L'OMS recommande un environnement de <strong>environ 30 dB</strong> pour bien dormir (le calme d'une bibliothèque).</p>
+            <p><strong>La bonne nouvelle :</strong> quelques ajustements (fenêtres, bouchons, horaires) peuvent considérablement améliorer votre sommeil.</p>
+            <p class="source">Source : OMS, Bruitparif</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>❤️ Le bien-être général : réduire le stress</h3>
+            <p>Le bruit chronique crée un état de stress permanent — votre corps reste en alerte. Cela peut affecter votre tension artérielle et votre bien-être général sur le long terme.</p>
+            <p><strong>C'est pourquoi les experts recommandent des espaces calmes :</strong> pour laisser votre corps se détendre vraiment. Les moments de silence sont aussi importants que le sommeil pour votre récupération.</p>
+            <p><strong>Ce que vous pouvez faire :</strong> identifier les sources de bruit chez vous, créer des zones calmes, prendre des pauses dans la nature — des gestes simples qui font une vraie différence.</p>
+            <p class="source">Source : OMS, recherches en santé environnementale</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>👂 L'audition : la protéger dès maintenant</h3>
+            <p>Votre audition est précieuse et se protège. Au-delà de <span class="highlight">85 décibels (dB)</span> en exposition répétée, l'oreille a besoin de protection. L'échelle des décibels est logarithmique : <strong>chaque +3 dB = doublement du risque</strong>.</p>
+            <div class="scale">
+85 dB → 8 heures tolerables<br>
+88 dB → 4 heures<br>
+91 dB → 2 heures<br>
+94 dB → 1 heure<br>
+110+ dB → protégez-vous immédiatement
+            </div>
+            <p><strong>Bonne nouvelle :</strong> avec des protections simples (bouchons, casques), vous pouvez profiter de la musique, des concerts et des activités bruyantes sans risque.</p>
+            <p class="source">Source : OMS, Santé Publique France</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>🔕 Les acouphènes : sifflements et bourdonnements</h3>
+            <p>Certaines personnes expérimentent des sifflements ou bourdonnements dans l'oreille (acouphènes). Souvent temporaires après une exposition au bruit, ils peuvent dans certains cas persister.</p>
+            <p><strong>Si c'est votre cas :</strong> des solutions existent pour atténuer l'inconfort et adapter votre vie quotidienne. Une consultation ORL et une prise en charge adaptée font une grosse différence.</p>
+            <p class="source">Source : Baromètre JNA-IFOP, données médicales</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>🧠 Chez l'enfant : créer un environnement favorable</h3>
+            <p>Les enfants sont sensibles à l'environnement sonore. Un cadre calme à l'école et à la maison aide à la concentration et aux apprentissages.</p>
+            <p><strong>Ce que vous pouvez faire :</strong> favoriser des espaces calmes pour les devoirs, limiter le bruit de fond, faire des pauses de silence. Ces gestes simples soutiennent le bien-être et les performances scolaires de votre enfant.</p>
+            <p class="source">Source : Études sur l'environnement sonore et apprentissage</p>
+        </div>
+
+        <h2 class="section-title">📏 Les seuils recommandés par l'OMS (2018)</h2>
+
+        <div class="advice-box">
+            <p><strong>Pour l'environnement extérieur :</strong></p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li><strong>Bruit routier</strong> : < 53 dB Lden (jour-soir-nuit) et < 45 dB la nuit</li>
+                <li><strong>Bruit ferroviaire</strong> : < 54 dB Lden et < 44 dB la nuit</li>
+                <li><strong>Bruit aérien</strong> : < 45 dB Lden et < 40 dB la nuit</li>
+                <li><strong>Musique/loisirs</strong> : ≤ 70 dB en moyenne annuelle</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Pour dormir :</strong> environ <strong>30 dB</strong> dans la chambre est recommandé ; 40 dB est déjà un seuil de perturbation.</p>
+            <p style="font-size: 0.95rem; opacity: 0.8;">⚠️ <strong>Réalité en France :</strong> En Île-de-France, les seuils OMS sont dépassés la plupart du temps ; 90 % des habitants de la zone dense vivent au-dessus des recommandations.</p>
+        </div>
+
+        <h2 class="section-title">🛡️ Conseils pratiques de prévention</h2>
+
+        <div class="impact-item">
+            <h3>🪟 Isolation acoustique du logement</h3>
+            <p><strong>Les fenêtres sont le point faible n°1.</strong> Un double vitrage asymétrique ou feuilleté acoustique porte l'atténuation à 35-40 dB.</p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li><strong>Double vitrage acoustique :</strong> feuilleté ou asymétrique (ex. 10-6-4 mm). Gain : 35-40 dB.</li>
+                <li><strong>Film PVB Silence :</strong> apporte 3 dB supplémentaires (réduction perçue de moitié).</li>
+                <li><strong>Étanchéité des joints :</strong> remplacement des joints usés peut réduire de 5 dB seul.</li>
+                <li><strong>Double fenêtre :</strong> deux fenêtres séparées d'au moins 12 cm — la solution la plus efficace.</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Conseil :</strong> lors d'une rénovation, combiner isolation phonique et thermique (recommandation ADEME) pour économies d'énergie + confort sonore.</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>🎧 Protections auditives</h3>
+            <p><strong>À porter en concert, festival, bricolage :</strong></p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li><strong>Bouchons en mousse</strong> : atténuation ~30 dB. À rouler, insérer et laisser 20-30 secondes pour l'expansion.</li>
+                <li><strong>Bouchons à filtre (musiciens)</strong> : atténuation linéaire, préserve la qualité du son — idéals pour concerts.</li>
+                <li><strong>Casques anti-bruit (enfants, bricolage)</strong> : atténuation 21-36 dB.</li>
+                <li><strong>Double protection (bruit > 110 dB)</strong> : bouchons + casque.</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>⚠️ Point critique :</strong> l'efficacité dépend de la pose. Mal ajustée, une protection ne protège presque pas.</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>🎵 Hygiène sonore au quotidien</h3>
+            <p><strong>Règle du 60/60 (OMS) :</strong></p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>Volume à <strong>60 % maximum</strong> de votre appareil</li>
+                <li>Écoute limitée à <strong>60 minutes d'affilée</strong>, puis pause</li>
+                <li>Repère : 80 dB → 40 h/semaine tolérable ; 90 dB → 12 h 30/semaine seulement</li>
+                <li>Écouteurs avec <strong>réduction de bruit active</strong> pour ne pas monter le volume</li>
+            </ul>
+        </div>
+
+        <div class="impact-item">
+            <h3>🌳 Trouver des zones calmes</h3>
+            <p>Les <strong>« zones calmes »</strong> (parcs, jardins, espaces naturels) sont essentielles pour la récupération.</p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>Consultez les <strong>cartes stratégiques de bruit</strong> (ex. carto.bruitparif.fr en Île-de-France) pour repérer les zones vertes et éviter les zones violettes.</li>
+                <li>Prenez des <strong>pauses de silence régulières</strong> — laissez votre oreille récupérer.</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">👂 Personnes sensibles : acouphènes, hyperacousie, misophonie</h2>
+
+        <div class="impact-item">
+            <h3>Acouphènes</h3>
+            <p>Consultez un <strong>ORL sans tarder</strong> (via votre médecin traitant) pour un bilan complet. Le traitement de référence associe <strong>thérapie sonore et thérapie cognitivo-comportementale (TCC)</strong>, réunies dans la thérapie d'habituation (TRT). Il n'existe pas de médicament miracle, mais la prise en charge améliore nettement la qualité de vie.</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>Hyperacousie</h3>
+            <p>Intolérance douloureuse aux sons. Désensibilisation sonore progressive et TCC, d'autant plus efficaces qu'elles débutent tôt.</p>
+        </div>
+
+        <div class="impact-item">
+            <h3>Misophonie</h3>
+            <p>Réaction émotionnelle intense (colère, dégoût) à des sons spécifiques produits par autrui. Les <strong>TCC</strong> sont l'approche la mieux documentée. Consultez d'abord un ORL (écarter une hyperacousie), puis un professionnel de santé mentale. <strong>Éviter le port permanent de protections</strong>, qui peut aggraver l'hypersensibilité.</p>
+        </div>
+
+        <h2 class="section-title">⚠️ Quand consulter un ORL ?</h2>
+
+        <div class="advice-box">
+            <p><strong>Sans tarder, si vous présentez :</strong></p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li>Sifflements ou bourdonnements persistants</li>
+                <li>Sensation d'oreille bouchée</li>
+                <li>Besoin de faire répéter vos interlocuteurs</li>
+                <li>Augmentation régulière du volume de la télévision</li>
+                <li>Intolérance soudaine aux bruits ordinaires</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Bon à savoir :</strong> Le <strong>100 % Santé audiologie</strong> permet un remboursement intégral des aides auditives de classe I chez l'adulte (plafonné à 950 € par oreille) avec <strong>30 jours d'essai</strong> et <strong>4 ans de garantie</strong>.</p>
+        </div>
+
+        <h2 class="section-title">📚 Ressources officielles en France</h2>
+
+        <ul class="resources-list">
+            <li><strong>ANSES</strong> — Rapport de référence sur les impacts sanitaires du bruit. <a href="https://www.anses.fr" target="_blank" style="color: var(--teal);">www.anses.fr</a></li>
+            <li><strong>Santé Publique France</strong> — Données épidémiologiques et prévention. <a href="https://www.santepubliquefrance.fr" target="_blank" style="color: var(--teal);">www.santepubliquefrance.fr</a></li>
+            <li><strong>Bruitparif</strong> — Cartes de bruit Île-de-France, ressources pédagogiques. <a href="https://www.bruitparif.fr" target="_blank" style="color: var(--teal);">www.bruitparif.fr</a></li>
+            <li><strong>INRS</strong> — Bruit au travail et protections auditives. <a href="https://www.inrs.fr" target="_blank" style="color: var(--teal);">www.inrs.fr</a></li>
+            <li><strong>JNA (Journée Nationale de l'Audition)</strong> — Sensibilisation et ressources. <a href="https://www.journee-audition.org" target="_blank" style="color: var(--teal);">www.journee-audition.org</a></li>
+        </ul>
+
+        <div class="quick-faq">
+            <h3>Questions rapides</h3>
+            <div class="quick-faq-item"><strong>À partir de quel niveau le bruit devient-il dangereux ?</strong> À partir de 85 dB(A) en exposition répétée (8 heures). En-dessous, c'est aussi dangereux sur plus longtemps. En concert (100-110 dB), des dégâts peuvent survenir en minutes.</div>
+            <div class="quick-faq-item"><strong>Comment savoir si j'ai une perte auditive ?</strong> Vous avez du mal à entendre les conversations, vous augmentez le volume de la TV, vous devez faire répéter. Consulter un ORL : l'audiogramme est gratuit en parcours de soins.</div>
+            <div class="quick-faq-item"><strong>Les lésions auditives sont-elles réversibles ?</strong> Non. Les cellules ciliées de l'oreille interne, une fois détruites, ne se régénèrent pas. D'où l'importance de la prévention dès maintenant.</div>
+            <a href="faq.html" class="btn-main">Voir la FAQ complète</a>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); font-size: 0.9rem; opacity: 0.8;">
+            <p><strong>📍 Pourquoi ce guide ?</strong> Comprendre l'impact du bruit est le premier pas pour agir. Cette page vous donne les outils pour protéger votre audition et créer des espaces de calme au quotidien.</p>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">Cartes d'Europe</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">
+            © 2026 AUKLM.APP — LA SANTÉ AU CŒUR DU CALME
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>

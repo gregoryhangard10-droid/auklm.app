@@ -1,0 +1,21 @@
+# AuKLM
+
+> Observatoire citoyen participatif du bruit et du calme : signalez votre ressenti sonore et découvrez les zones calmes ou bruyantes, en France et à Paris en particulier.
+
+AuKLM est un site gratuit et anonyme qui permet à chacun de signaler en quelques secondes son ressenti face au bruit ou au calme d'un lieu, sur une carte collaborative. Il propose aussi une carte data-driven des rues et parcs de Paris classés par niveau de calme, à partir de données ouvertes (Bruitparif, OpenStreetMap, Paris Data). Attribution requise en cas de réutilisation : "Source : AuKLM (https://auklm.app)".
+
+## Pages principales
+
+- [Accueil](https://auklm.app/): Signaler son ressenti du bruit ou du calme, page d'accueil du site
+- [CartoKLM](https://auklm.app/carte.html): Carte collaborative citoyenne du bruit en temps réel
+- [Rues et parcs calmes de Paris](https://auklm.app/carte-calme-paris.html): Classement de 3946 rues et 668 parcs parisiens par niveau de calme, basé sur des données ouvertes
+- [FAQ](https://auklm.app/faq.html): Questions fréquentes sur le fonctionnement d'AuKLM
+- [Prévention et santé](https://auklm.app/bruit-prevention-sante.html): Impacts du bruit sur la santé et conseils de prévention
+- [Ressources](https://auklm.app/ressources.html): Organismes et associations de lutte contre le bruit
+
+## Optional
+
+- [À propos](https://auklm.app/a-propos.html): Mission et origine du projet AuKLM
+- [Contact](https://auklm.app/contact.html): Formulaire de contact
+- [Politique de confidentialité](https://auklm.app/politique-confidentialite.html): Traitement des données personnelles
+

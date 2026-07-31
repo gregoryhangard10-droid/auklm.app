@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        // Chargement différé de Google Tag Manager (perf) : le script
+        // n'est pas nécessaire pour l'affichage initial de la page.
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | AuKLM</title>
+    <meta name="description" content="Contactez-nous pour nous faire part de vos retours, suggestions ou questions sur AuKLM.">
+    <meta property="og:title" content="Contact | AuKLM">
+    <meta property="og:description" content="Nous serions heureux de vous entendre.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/contact.html">
+    <link rel="canonical" href="https://auklm.app/contact.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact — AuKLM",
+        "url": "https://auklm.app/contact.html",
+        "description": "Contactez AuKLM pour vos questions, demandes ou partenariats.",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "AuKLM",
+            "contact": {
+                "@type": "ContactPoint",
+                "contactType": "Customer Service",
+                "email": "gregoryhangard@gmail.com"
+            }
+        }
+    }
+    </script>
+
+    <style>
+        .container {
+            max-width: 700px;
+        }
+
+        h1 {
+            color: var(--teal);
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+
+        .form-container {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(168, 218, 220, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--teal);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(168, 218, 220, 0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.95);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: 0.2s;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            background: rgba(255,255,255,0.12);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: var(--font-body);
+        }
+
+        button.btn-main {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .form-note {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            input, textarea {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>Contact</h1>
+        <p class="subtitle">Vos retours et suggestions nous intéressent.</p>
+
+        <div class="form-container">
+            <form action="https://formspree.io/f/mjgyvlvg" method="POST">
+                <div class="form-group">
+                    <label for="name">Votre nom</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Votre email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Sujet</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-main">Envoyer</button>
+
+                <p class="form-note">
+                    Vos données ne sont pas conservées. Nous ne recevons que votre message et votre email de contact.
+                </p>
+            </form>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div style="text-align: center;">
+                    <p style="opacity: 0.9; margin-bottom: 10px;">Découvrez les collectifs anti-bruit</p>
+                    <a href="ressources.html" class="btn-main">Voir les ressources</a>
+                </div>
+                <div style="text-align: center;">
+                    <p style="opacity: 0.9; margin-bottom: 10px;">Comprendre notre mission</p>
+                    <a href="a-propos.html" class="btn-main">À propos</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">Cartes d'Europe</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">
+            © 2026 AUKLM.APP — LES DONNÉES AU SERVICE DU CALME
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>

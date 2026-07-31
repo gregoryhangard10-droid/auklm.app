@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        // Chargement différé de Google Tag Manager (perf) : le script
+        // n'est pas nécessaire pour l'affichage initial de la page.
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CartoKLM | La carte collaborative du bruit... et du calme</title>
+    <meta name="description" content="Découvrez les signalements de bruit et les endroits calmes près de chez vous, et participez à la carte collaborative citoyenne AuKLM.">
+    <meta property="og:title" content="CartoKLM | La carte collaborative du bruit">
+    <meta property="og:description" content="Découvrez les nuisances sonores signalées près de chez vous et participez à la carte citoyenne AuKLM.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/carte.html">
+    <link rel="canonical" href="https://auklm.app/carte.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "CartoKLM — Carte collaborative des nuisances sonores",
+        "url": "https://auklm.app/carte.html",
+        "description": "Explorez la carte collaborative des signalements de bruit en temps réel. Découvrez les zones calmes et animées de votre quartier.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "AuKLM",
+            "url": "https://auklm.app"
+        }
+    }
+    </script>
+
+    <style>
+        /* Styles spécifiques à cette page uniquement */
+        h1 {
+            color: var(--teal);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .official-map-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(168, 218, 220, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            overflow: hidden;
+        }
+
+        .fact-container {
+            background: rgba(168, 218, 220, 0.05);
+            border: 1px solid rgba(168, 218, 220, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #fact-content {
+            transition: opacity 0.5s ease;
+        }
+
+        .fact-title {
+            color: var(--teal);
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fact-source {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .cta-section {
+            background: var(--teal);
+            color: var(--navy);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .official-map-box {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .official-map-box div[style*="height: 450px"] {
+                height: 320px !important;
+                overflow: hidden;
+                border-radius: 15px;
+            }
+            .official-map-box iframe {
+                height: 320px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .official-map-box {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .official-map-box div[style*="height: 450px"] {
+                height: 550px !important;
+                overflow: hidden;
+                border-radius: 15px;
+            }
+            .official-map-box iframe {
+                height: 550px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .official-map-box {
+                padding: 12px;
+                margin-bottom: 15px;
+                overflow: hidden;
+            }
+            .official-map-box div[style*="height: 450px"] {
+                height: 320px !important;
+                overflow: hidden;
+                border-radius: 15px;
+            }
+            .official-map-box iframe {
+                height: 320px !important;
+                display: block;
+                border-radius: 15px !important;
+                clip-path: inset(0 0 0 0 round 15px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>CartoKLM</h1>
+        <p class="subtitle">L'observatoire collaboratif du bruit — et des endroits calmes.</p>
+
+        <div class="official-map-box">
+            <h2 style="color: var(--teal); font-size: 1.2rem; margin-top: 0; margin-bottom: 15px;">
+                Carte collaborative AuKLM du bruit dans les lieux publics
+            </h2>
+
+            <div style="background: rgba(168, 218, 220, 0.08); border: 1px solid rgba(168, 218, 220, 0.2); border-radius: 10px; padding: 15px; margin-bottom: 15px; text-align: center;">
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.5;">
+                    🌱 <strong>Cette carte grandit avec vous.</strong> Soyez parmi les premiers à documenter le bruit de votre quartier — chaque signalement compte et aide à construire une ressource utile pour tous.
+                </p>
+            </div>
+
+            <div style="width: 100%; height: 450px; border-radius: 15px; overflow: hidden; background: transparent;">
+                <iframe id="looker-frame"
+                        width="100%"
+                        height="450"
+                        scrolling="no"
+                        style="border:0; vertical-align: middle; display: block;"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.7;">
+                📍 Source : <strong>Communauté AuKLM</strong>. Mesures citoyennes en temps réel.
+            </p>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="margin: 0;">La carte a besoin de vous</h2>
+            <p>Vous connaissez des nuisances sonores qui ne figurent pas sur les cartes ? Un chantier ? Une terrasse bruyante ? Signalez votre ressenti ici et maintenant.</p>
+            <a href="index.html" class="btn-main">Contribuer à la carte</a>
+        </div>
+
+        <p style="font-size: 0.85rem; text-align: center; opacity: 0.7; margin-bottom: 30px;">
+            📍 Vous cherchez les données officielles de Bruitparif ou d'autres villes ?
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: underline;">Consultez notre sélection de cartes en Europe</a>.
+        </p>
+
+        <div class="fact-container" id="fact-box">
+            <div id="fact-content">
+                <span class="fact-title">LE SAVIEZ-VOUS ?</span>
+                <p id="fact-text">Chargement des données environnementales...</p>
+                <div class="fact-source" id="fact-source">...</div>
+            </div>
+        </div>
+
+        <div class="quick-faq">
+            <h3>Questions rapides</h3>
+            <div class="quick-faq-item"><strong>Comment la carte se met-elle à jour ?</strong> En temps réel. Chaque signalement apparaît immédiatement, anonymement, sur la CartoKLM.</div>
+            <div class="quick-faq-item"><strong>Mes signalements sont-ils vraiment anonymes ?</strong> Oui. Votre position est arrondie au niveau de la ville/arrondissement. Aucun autre info personnelle.</div>
+            <div class="quick-faq-item"><strong>Pourquoi certaines zones ont plus d'épingles ?</strong> Parce que plus de gens y ont signalé du bruit. C'est une ressource collective — plus les contributions, plus c'est utile.</div>
+            <a href="faq.html" class="btn-main">Voir la FAQ complète</a>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center;">
+            <p style="opacity: 0.9; margin-bottom: 15px;">Curieux de voir comment les autres pays documentent le bruit ?</p>
+            <a href="cartes-europe.html" class="btn-main">Découvrir les cartes d'Europe</a>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <p style="opacity: 0.9; margin-bottom: 15px;">Quelles rues et quels parcs de Paris sont les plus calmes ?</p>
+            <a href="carte-calme-paris.html" class="btn-main">Voir le classement</a>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">Cartes d'Europe</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">
+            © 2026 AUKLM.APP — LES DONNÉES AU SERVICE DU CALME
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        // Switcher dynamique entre rapports Looker (mobile, tablet, desktop)
+        let lastReportId = null;
+        
+        function loadLookerReport() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const isLandscape = width > height; // Paysage si largeur > hauteur
+            let reportId;
+            
+            if (width < 768) {
+                // Mobile
+                if (isLandscape) {
+                    reportId = "04125955-1b55-462e-859a-7eedef0df60d"; // Mobile paysage
+                } else {
+                    reportId = "a4ee86fa-f87c-4dde-9247-814ed553d48a"; // Mobile portrait
+                }
+            } else if (width < 1200) {
+                reportId = "9679fe1c-7ce1-4816-b3f2-4af1517b4d04"; // Tablet
+            } else {
+                reportId = "60073f42-399a-4de1-8f89-8fc7ae2b31ac"; // Desktop
+            }
+            
+            // Recharge seulement si le rapport change
+            if (reportId === lastReportId) return;
+            lastReportId = reportId;
+            
+            const fsParam = width < 768 ? "&fs=1" : ""; // Fullscreen sur mobile
+            
+            document.getElementById('looker-frame').src =
+                "https://lookerstudio.google.com/embed/reporting/" + reportId + 
+                "/page/9bimF?nobrand=1" + fsParam + "&cachebust=" + Date.now();
+        }
+        
+        // Chargement différé : laisse le reste de la page (header, menu, texte)
+        // s'afficher en priorité avant de démarrer le lourd iframe Looker Studio.
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadLookerReport, { timeout: 800 });
+        } else {
+            setTimeout(loadLookerReport, 200); // repli pour Safari (pas de requestIdleCallback)
+        }
+        window.addEventListener('orientationchange', loadLookerReport);
+        window.addEventListener('resize', loadLookerReport);
+    </script>
+    <script>
+        const facts = [
+            {
+                text: "Le bruit est le 2ème facteur environnemental provoquant le plus de dommages à la santé en Europe.",
+                source: "Source : Organisation Mondiale de la Santé"
+            },
+            {
+                text: "À Paris, les habitants les plus exposés perdent jusqu'à 3 ans de vie en bonne santé à cause du bruit.",
+                source: "Source : Bruitparif / ARS"
+            },
+            {
+                text: "Un seul passage de deux-roues débridé la nuit peut réveiller jusqu'à 10 000 personnes en zone dense.",
+                source: "Source : Étude ADEME"
+            },
+            {
+                text: "Seulement 7% de la surface de Paris est classée en 'Zone de Calme' officielle.",
+                source: "Source : PPBE Ville de Paris"
+            },
+            {
+                text: "Le coût social du bruit en France est estimé à 156 milliards d'euros par an.",
+                source: "Source : ADEME / Conseil National du Bruit"
+            }
+        ];
+
+        let currentFact = 0;
+        function updateFact() {
+            const content = document.getElementById('fact-content');
+            const textElem = document.getElementById('fact-text');
+            const sourceElem = document.getElementById('fact-source');
+
+            content.style.opacity = 0;
+            setTimeout(() => {
+                textElem.innerText = facts[currentFact].text;
+                sourceElem.innerText = facts[currentFact].source;
+                content.style.opacity = 1;
+                currentFact = (currentFact + 1) % facts.length;
+            }, 500);
+        }
+
+        setInterval(updateFact, 7000);
+        window.addEventListener('load', updateFact);
+    </script>
+</body>
+</html>

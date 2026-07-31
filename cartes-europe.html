@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        // Chargement différé de Google Tag Manager (perf) : le script
+        // n'est pas nécessaire pour l'affichage initial de la page.
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartes du bruit en Europe | AuKLM</title>
+    <meta name="description" content="Notre sélection des cartes officielles du bruit en Europe : Île-de-France, Lyon, Bruxelles, Royaume-Uni et vue d'ensemble européenne.">
+    <meta property="og:title" content="Cartes du bruit en Europe | AuKLM">
+    <meta property="og:description" content="Notre sélection des cartes officielles du bruit en Europe, ville par ville et pays par pays.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/cartes-europe.html">
+    <link rel="canonical" href="https://auklm.app/cartes-europe.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Cartes d'Europe — Ressources officielles de bruit",
+        "url": "https://auklm.app/cartes-europe.html",
+        "description": "Découvrez les cartes interactives de bruit en Europe. Ressources officielles nationales pour consulter l'exposition au bruit routier, ferroviaire et aérien.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "AuKLM",
+            "url": "https://auklm.app"
+        }
+    }
+    </script>
+
+    <style>
+        .container {
+            max-width: 700px;
+            text-align: left;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+        }
+
+        .intro-block {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .source-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(168, 218, 220, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .source-card h2 {
+            color: var(--teal);
+            font-size: 1.2rem;
+            margin: 0 0 4px 0;
+        }
+
+        .source-tag {
+            display: inline-block;
+            background: rgba(168, 218, 220, 0.15);
+            color: var(--teal);
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .source-card p {
+            line-height: 1.55;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 16px;
+        }
+
+        .source-link {
+            display: inline-block;
+            color: var(--navy);
+            background: var(--teal);
+            font-weight: bold;
+            font-family: var(--font-display);
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .source-link:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            .source-link {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        .caveat {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-top: 10px;
+        }
+
+        .disclaimer-box {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-align: center;
+            margin-top: 30px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>Cartes du bruit en Europe</h1>
+        <p class="subtitle">Notre sélection de cartes officielles, ville par ville et pays par pays</p>
+
+        <div class="intro-block">
+            <p>AuKLM se concentre sur le ressenti citoyen, quartier par quartier. Mais d'autres organismes officiels produisent depuis longtemps des cartes de bruit basées sur des modélisations acoustiques réglementaires. Voici notre inventaire exhaustif des ressources les plus utiles à travers l'Europe, pour compléter votre lecture du sujet.</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇪🇺 Europe</span>
+            <h2>Noise Observation & Health Atlas — Agence européenne de l'environnement</h2>
+            <p>La vue d'ensemble la plus large disponible : cette carte interactive agrège les données de bruit soumises par l'ensemble des États membres dans le cadre de la directive européenne sur le bruit. Utile pour comparer les niveaux d'exposition entre pays et grandes agglomérations.</p>
+            <a href="https://discomap.eea.europa.eu/atlas/?page=Noise&views=Urban-noise-levels" target="_blank" rel="noopener" class="source-link">Consulter la carte →</a>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇩🇪 Allemagne</span>
+            <h2>Lärmkartierung Umweltbundesamt</h2>
+            <p>Cartographie stratégique du bruit pour l'ensemble de l'Allemagne selon les standards européens. L'agence fédérale de l'environnement (Umweltbundesamt) fournit une plateforme interactive couvrant routes, rails, aéroports et industries.</p>
+            <a href="https://gis.uba.de/maps/resources/apps/laermkartierung/index.html" target="_blank" rel="noopener" class="source-link">Consulter la carte →</a>
+            <p class="caveat">Plusieurs Länder (États) proposent également leurs propres cartes détaillées.</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇦🇹 Autriche</span>
+            <h2>Lärminfo.at — Plattform Umgebungslärm</h2>
+            <p>Plateforme nationale autrichienne avec cartes interactives et données détaillées sur l'exposition au bruit routier, ferroviaire, aérien et industriel. Accessible par adresse avec zoom municipal.</p>
+            <a href="https://www.laerminfo.at/" target="_blank" rel="noopener" class="source-link">Consulter la plateforme →</a>
+            <a href="https://maps.laerminfo.at/" target="_blank" rel="noopener" class="source-link">Accès direct aux cartes →</a>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇧🇪 Belgique · Bruxelles</span>
+            <h2>Noisemonitoring.brussels</h2>
+            <p>Bruxelles Environnement gère un réseau de 22 stations de mesure fixes, avec des relevés consultables presque en temps réel — une approche qui se rapproche de la nôtre, mais avec des capteurs professionnels plutôt que du signalement citoyen.</p>
+            <a href="https://www.noisemonitoring.brussels" target="_blank" rel="noopener" class="source-link">Consulter la plateforme →</a>
+            <p class="caveat">Lien à vérifier périodiquement — plateforme relativement récente.</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇪🇸 Espagne</span>
+            <h2>Aena — Cartes de bruit aéroportuaires</h2>
+            <p>L'opérateur des aéroports espagnols (Aena) propose un système temps réel de visualisation du bruit pour les 14 principaux aéroports : Madrid, Barcelone, Bilbao, Malaga, Valence, Palma, et autres.</p>
+            <a href="https://www.aena.es/en/corporative/environment-sustainability/noise/interactive-noise-maps.html" target="_blank" rel="noopener" class="source-link">Consulter les cartes Aena →</a>
+            <p class="caveat">Focus sur le bruit aérien ; cartes municipales du bruit routier disponibles via données.gob.es (Barcelone, Madrid).</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇫🇷 France · Île-de-France</span>
+            <h2>Bruitparif</h2>
+            <p>L'observatoire du bruit francilien, avec un réseau de mesures fixes et des simulations acoustiques détaillées. C'est la référence pour Paris et sa région, en complément direct de <a href="carte.html" style="color: var(--teal); text-decoration: underline;">notre carte collaborative</a>.</p>
+            <a href="https://rumeur.bruitparif.fr/" target="_blank" rel="noopener" class="source-link">Consulter la carte →</a>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇫🇷 France · Lyon</span>
+            <h2>Métropole de Lyon</h2>
+            <p>Une carte interactive qui permet de rentrer directement son adresse pour connaître son exposition au bruit routier, ferroviaire et industriel — et repérer les "zones de calme" les plus proches.</p>
+            <a href="https://met.grandlyon.com/une-carte-du-bruit-pour-mieux-sen-proteger/" target="_blank" rel="noopener" class="source-link">Consulter la carte →</a>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇮🇹 Italie</span>
+            <h2>Cartes acustiques par régions et communes</h2>
+            <p>L'Italie applique la directive par commune (agglomérations urbaines > 100 000 hab). Les principales villes (Rome, Milan, Turin, Gênes, Venise, Florence, Palermo, etc.) ont des mappatures stratégiques disponibles. ARPAT (Toscane) et d'autres agences régionales centralisent les données.</p>
+            <a href="https://www.arpat.toscana.it/temi-ambientali/rumore/le-mappe-acustiche" target="_blank" rel="noopener" class="source-link">Exemple : ARPAT Toscane →</a>
+            <p class="caveat">Pas de portail national unique ; consulter les mairies locales ou agences régionales pour votre zone.</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇳🇱 Pays-Bas</span>
+            <h2>Atlas Leefomgeving</h2>
+            <p>Cartographie complète de la qualité de vie aux Pays-Bas, incluant l'exposition au bruit routier, ferroviaire et aérien. Un formulaire d'adresse permet de voir immédiatement les risques sonores d'une zone spécifique.</p>
+            <a href="https://www.atlasleefomgeving.nl/en/node/17231" target="_blank" rel="noopener" class="source-link">Consulter l'outil →</a>
+            <p class="caveat">Couverture : ensemble du territoire néerlandais avec données très détaillées.</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇬🇧 Royaume-Uni</span>
+            <h2>England Noise & Air Quality Viewer</h2>
+            <p>Le portail officiel historique du Defra n'est plus en ligne. Ce visualiseur, développé par un prestataire tiers, republie les données officielles de cartographie stratégique du bruit routier et ferroviaire en Angleterre.</p>
+            <a href="http://www.extrium.co.uk/noiseviewer.html" target="_blank" rel="noopener" class="source-link">Consulter la carte →</a>
+            <p class="caveat">Outil tiers non-officiel s'appuyant sur des données publiques Defra.</p>
+        </div>
+
+        <div class="source-card">
+            <span class="source-tag">🇨🇭 Suisse</span>
+            <h2>sonBASE — Géoportail fédéral</h2>
+            <p>La base de données de bruit suisse couvre routes, rails, aéroports et sources industrielles. Les données sont accessibles via opendata.swiss et intégrées dans plusieurs visionneurs régionaux par canton.</p>
+            <a href="https://opendata.swiss/en/dataset/larmbelastung-durch-strassenverkehr-lr_tag" target="_blank" rel="noopener" class="source-link">Consulter sur opendata.swiss →</a>
+            <p class="caveat">Accès détaillé également via VivaMap (cartographie de la qualité de vie par commune)</p>
+        </div>
+
+        <div class="disclaimer-box">
+            Ces liens pointent vers des sites tiers que nous ne contrôlons pas. AuKLM n'est ni affilié ni responsable du contenu de ces plateformes — nous les référençons à titre informatif. 
+            <br><br>
+            <strong>Remarque :</strong> La majorité de ces cartes répondent à la Directive européenne 2002/49/CE sur l'évaluation et la gestion du bruit. Pour les pays non listés ici, consultez le <strong>Noise Viewer de l'EEA</strong> (lien ci-dessus) : toutes les données nationales y sont agrégées.
+        </div>
+
+        <div class="quick-faq">
+            <h3>Questions rapides</h3>
+            <div class="quick-faq-item"><strong>D'où viennent ces sources ?</strong> De plateformes officielles nationales (Bruitparif France, Umweltbundesamt Allemagne, etc.). AuKLM les référence à titre informatif.</div>
+            <div class="quick-faq-item"><strong>Pourquoi pas tous les pays européens ?</strong> Nous avons listé les pays avec des cartes interactives publiques. Pour d'autres, consultez le Noise Viewer de l'EEA.</div>
+            <div class="quick-faq-item"><strong>AuKLM remplace-t-il ces cartes officielles ?</strong> Non. AuKLM complète avec du ressenti citoyen en temps réel. Les cartes officielles sont les données de référence réglementaire.</div>
+            <a href="faq.html" class="btn-main">Voir la FAQ complète</a>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center;">
+            <p style="opacity: 0.9; margin-bottom: 15px;">Vous habitez en France ? Contribuez à notre carte collaborative !</p>
+            <a href="carte.html" class="btn-main">Accéder à la CartoKLM</a>
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">© 2026 AUKLM.APP — LA MÉTÉO DU BRUIT</div>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>
