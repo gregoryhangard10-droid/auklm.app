@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J'ai calculé le score de calme de 4 000 rues parisiennes | Blog AuKLM</title>
+    <meta name="description" content="Comment croiser des données ouvertes officielles pour estimer le calme de 4000 rues et 700 parcs parisiens, et ce que ça révèle sur Paris.">
+    <meta property="og:title" content="J'ai calculé le score de calme de 4 000 rues parisiennes">
+    <meta property="og:description" content="Comment croiser des données ouvertes officielles pour estimer le calme de 4000 rues et 700 parcs parisiens.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/blog-carte-calme-paris.html">
+    <link rel="canonical" href="https://auklm.app/blog-carte-calme-paris.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "J'ai calculé le score de calme de 4 000 rues parisiennes — voici ce que ça révèle",
+        "url": "https://auklm.app/blog-carte-calme-paris.html",
+        "image": "https://auklm.app/og-image.png",
+        "publisher": { "@type": "Organization", "name": "AuKLM" },
+        "mainEntityOfPage": "https://auklm.app/blog-carte-calme-paris.html"
+    }
+    </script>
+
+    <style>
+        .container { max-width: 700px; }
+        h1 { color: var(--teal); font-size: clamp(1.6rem, 4.5vw, 2.2rem); margin-bottom: 20px; line-height: 1.3; }
+        .article-body { font-size: 1rem; line-height: 1.75; }
+        .article-body h3 { color: var(--teal); margin-top: 35px; font-size: 1.2rem; }
+        .article-body a { color: var(--teal); }
+        .article-body img { border-radius: 12px; margin: 10px 0; }
+        .article-body ol { padding-left: 20px; }
+        .article-body ol li { margin-bottom: 8px; }
+        .back-link { display: inline-block; margin-bottom: 25px; color: var(--teal); text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte-calme-paris.html">🗺️ Carte du calme</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="blog.html">📝 Blog</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <a href="blog.html" class="back-link">← Retour au blog</a>
+
+        <h1>J'ai calculé le score de calme de 4 000 rues parisiennes — voici ce que ça révèle</h1>
+
+        <div class="article-body">
+
+<p><img src="carte-calme-screenshot.png" alt="Carte du calme de Paris - AuKLM, rues colorées du plus calme au plus bruyant" style="max-width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(168,218,220,0.2);" /></p>
+
+<p>Est-ce que Paris est vraiment aussi bruyante qu'on le pense ? Et surtout : peut-on savoir, rue par rue, où se trouvent les vraies poches de calme ?</p>
+
+<p>C'est la question qui m'a lancé dans ce projet : croiser plusieurs jeux de données <strong>officielles et ouvertes</strong> pour calculer un score de calme sur environ <strong>4 000 rues et 700 parcs et jardins parisiens</strong>. Le résultat est visible ici :</p>
+
+<p style="text-align: center;"><a href="carte-calme-paris.html" class="btn-main" style="display: inline-block;">👉 Découvrir la carte du calme de Paris</a></p>
+
+<h3>Pourquoi faire ça ?</h3>
+
+<p>Le bruit est l'une des premières sources de gêne en ville, mais on en parle presque toujours de façon générale ("Paris est bruyante"). J'avais envie de quelque chose de plus précis : <strong>quelle rue exactement</strong>, <strong>quel parc exactement</strong>, avec des chiffres vérifiables plutôt qu'une impression.</p>
+
+<h3>Comment le score est calculé</h3>
+
+<p>Pas de sondage, pas d'avis subjectif — uniquement des données publiques officielles, croisées :</p>
+
+<ol>
+  <li><strong>Le bruit du trafic routier et ferroviaire</strong>, mesuré et modélisé par Bruitparif (l'observatoire du bruit en Île-de-France), jour et nuit</li>
+  <li><strong>La proximité aux grands axes bruyants</strong>, calculée de façon continue (pas juste "dans la zone" ou "hors zone")</li>
+  <li><strong>La présence de bars et vie nocturne</strong> à proximité (OpenStreetMap), pondérée selon qu'ils ont une terrasse ou des horaires tardifs</li>
+  <li><strong>Le taux de végétation</strong> (canopée), mesuré par photo aérienne par la Ville de Paris — la verdure réduit le stress lié au bruit, même à niveau sonore équivalent</li>
+  <li><strong>La présence de marchés découverts</strong> à proximité, pondérée par le nombre de jours d'ouverture par semaine</li>
+</ol>
+
+<p>Chaque rue est échantillonnée tous les 30 mètres environ, et les rues trop courtes pour avoir un échantillon fiable sont clairement signalées comme telles (pas de fausse précision).</p>
+
+<h3>Ce que ça révèle</h3>
+
+<p>Sans surprise, les grandes places et axes historiquement animés arrivent en bas du classement : <strong>Bastille, Nation, Place Victor Hugo, Boulevard Beaumarchais</strong> — toutes à égalité au score le plus bas.</p>
+
+<p>Plus surprenant : <strong>la Place des Vosges obtient 100/100</strong>, le score maximal. Logique quand on y réfléchit — c'est une place entièrement piétonne, sans circulation à l'intérieur, contrairement à la plupart des grandes places parisiennes.</p>
+
+<p>Certains grands jardins parisiens (Tuileries, Palais-Royal, Luxembourg) sont aussi intégrés, avec leur vrai taux de végétation mesuré par photo aérienne — pas juste une estimation approximative.</p>
+
+<h3>Cherchez votre rue</h3>
+
+<p>La carte inclut un <strong>outil de recherche</strong> — tapez le nom de votre rue ou d'un parc pour voir directement son score, sans avoir à naviguer sur la carte entière.</p>
+
+<h3>Et la carte citoyenne, alors ?</h3>
+
+<p>Cette carte du calme est <strong>calculée</strong> à partir de données officielles — elle est complémentaire à <a href="carte.html">la carte collaborative AuKLM</a>, où ce sont les habitants eux-mêmes qui signalent leur ressenti réel, en direct. Les deux approches se complètent : l'une donne une base de référence, l'autre capture le vécu que les chiffres ne voient pas (un chantier ponctuel, une manifestation, une ambiance de quartier).</p>
+
+<p>Si vous voulez contribuer avec votre propre ressenti — bruyant ou calme — <a href="index.html">c'est par ici</a>, ça prend 10 secondes et c'est anonyme.</p>
+
+<hr style="border-color: rgba(168, 218, 220, 0.15); margin: 30px 0;">
+
+<p style="font-size: 0.9rem; opacity: 0.75;"><em>AuKLM est un projet citoyen indépendant, gratuit et sans publicité. Toutes les sources de données utilisées sont citées et sous licence ouverte (Bruitparif, OpenStreetMap, Ville de Paris/Paris Data).</em></p>
+
+        </div>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="blog.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">← Tous les articles</a>
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">© 2026 AUKLM.APP — LES DONNÉES AU SERVICE DU CALME</div>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>
