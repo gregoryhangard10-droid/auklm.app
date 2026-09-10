@@ -25,6 +25,12 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
+		<loc>https://auklm.app/blog-arrondissements-calmes.html</loc>
+		<lastmod>2026-09-10</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
 		<loc>https://auklm.app/blog-carte-calme-paris.html</loc>
 		<lastmod>2026-09-10</lastmod>
 		<changefreq>monthly</changefreq>
