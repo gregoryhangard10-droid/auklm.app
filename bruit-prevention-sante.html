@@ -164,6 +164,22 @@
             color: var(--teal);
         }
 
+        .db-preset {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(168, 218, 220, 0.25);
+            color: white;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .db-preset:hover, .db-preset.active {
+            background: var(--teal);
+            color: var(--navy);
+            font-weight: 600;
+        }
+
         @media (max-width: 480px) {
             .impact-item, .advice-box {
                 padding: 15px;
@@ -193,6 +209,7 @@
         <a href="index.html">🏠 Accueil</a>
         <a href="carte-calme-paris.html">🗺️ Carte du calme</a>
         <a href="carte.html">📍 CartoKLM</a>
+        <a href="blog.html">📝 Blog</a>
         <a href="faq.html">❓ FAQ</a>
         <a href="bruit-prevention-sante.html">🏥 Prévention</a>
         <a href="ressources.html">🔗 Ressources</a>
@@ -240,6 +257,31 @@
             </div>
             <p><strong>Bonne nouvelle :</strong> avec des protections simples (bouchons, casques), vous pouvez profiter de la musique, des concerts et des activités bruyantes sans risque.</p>
             <p class="source">Source : OMS, Santé Publique France</p>
+
+            <div id="calc-exposition">
+                <h4 style="color: var(--teal); margin: 20px 0 10px; font-size: 1rem;">🧮 Calculez votre durée d'exposition sécuritaire</h4>
+                <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 12px;">Déplacez le curseur ou choisissez un repère sonore courant :</p>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px;">
+                    <button type="button" class="db-preset" data-db="40">📚 Bibliothèque (40 dB)</button>
+                    <button type="button" class="db-preset" data-db="60">🗣️ Conversation (60 dB)</button>
+                    <button type="button" class="db-preset" data-db="80">🚗 Trafic urbain (80 dB)</button>
+                    <button type="button" class="db-preset" data-db="90">🏍️ Métro / moto (90 dB)</button>
+                    <button type="button" class="db-preset" data-db="100">🎵 Concert (100 dB)</button>
+                    <button type="button" class="db-preset" data-db="110">🔨 Marteau-piqueur (110 dB)</button>
+                </div>
+
+                <input type="range" id="db-slider" min="70" max="120" value="85" style="width: 100%; accent-color: var(--teal);">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.7; margin-top: 4px;">
+                    <span>70 dB</span><span>120 dB</span>
+                </div>
+
+                <div id="calc-resultat" style="background: rgba(168, 218, 220, 0.1); border: 1px solid rgba(168, 218, 220, 0.25); border-radius: 10px; padding: 15px; margin-top: 15px; text-align: center;">
+                    <div style="font-size: 1.3rem; font-weight: 600; color: var(--teal);" id="calc-db-affiche">85 dB</div>
+                    <div style="font-size: 0.95rem; margin-top: 6px;" id="calc-duree">Durée maximale sans risque : <strong>8 heures</strong></div>
+                </div>
+                <p style="font-size: 0.78rem; opacity: 0.65; margin-top: 8px;">Basé sur la formule du NIOSH (T = 8h / 2^((L-85)/3)), une limite d'exposition professionnelle — pas un seuil "sans aucun danger" universel. Le risque dépend aussi de la distance à la source et de la sensibilité individuelle.</p>
+            </div>
         </div>
 
         <div class="impact-item">
@@ -381,5 +423,53 @@
     </div>
 
     <script src="common.js"></script>
+    <script>
+        (function () {
+            const slider = document.getElementById('db-slider');
+            const dbAffiche = document.getElementById('calc-db-affiche');
+            const dureeEl = document.getElementById('calc-duree');
+            const presets = document.querySelectorAll('.db-preset');
+
+            function formatDuree(heures) {
+                if (heures >= 1) {
+                    const h = Math.floor(heures);
+                    const min = Math.round((heures - h) * 60);
+                    if (h === 0) return min + ' min';
+                    return h + ' h' + (min > 0 ? ' ' + min + ' min' : '');
+                }
+                const minutes = heures * 60;
+                if (minutes < 1) return Math.round(minutes * 60) + ' sec';
+                return Math.round(minutes) + ' min';
+            }
+
+            function updateCalc(db) {
+                slider.value = db;
+                dbAffiche.textContent = db + ' dB';
+
+                if (db <= 85) {
+                    dureeEl.innerHTML = 'Durée maximale sans risque : <strong>8 heures ou plus</strong>';
+                } else {
+                    const heures = 8 / Math.pow(2, (db - 85) / 3);
+                    dureeEl.innerHTML = 'Durée maximale sans risque : <strong>' + formatDuree(heures) + '</strong>';
+                }
+
+                presets.forEach(function (btn) {
+                    btn.classList.toggle('active', parseInt(btn.dataset.db) === parseInt(db));
+                });
+            }
+
+            slider.addEventListener('input', function () {
+                updateCalc(parseInt(slider.value));
+            });
+
+            presets.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    updateCalc(parseInt(btn.dataset.db));
+                });
+            });
+
+            updateCalc(85);
+        })();
+    </script>
 </body>
 </html>
