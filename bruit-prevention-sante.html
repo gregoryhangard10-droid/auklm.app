@@ -446,8 +446,12 @@
                 slider.value = db;
                 dbAffiche.textContent = db + ' dB';
 
-                if (db <= 85) {
-                    dureeEl.innerHTML = 'Durée maximale sans risque : <strong>8 heures ou plus</strong>';
+                if (db <= 55) {
+                    dureeEl.innerHTML = 'Aucun risque à ce niveau, quelle que soit la durée.';
+                } else if (db <= 70) {
+                    dureeEl.innerHTML = 'Aucun risque pour l\'audition à ce niveau, même en continu.';
+                } else if (db <= 85) {
+                    dureeEl.innerHTML = 'Aucun risque <strong>pour l\'audition</strong> à ce niveau — mais une exposition prolongée à ce type de bruit (trafic, ville) peut quand même causer stress et fatigue, par un autre mécanisme.';
                 } else {
                     const heures = 8 / Math.pow(2, (db - 85) / 3);
                     dureeEl.innerHTML = 'Durée maximale sans risque : <strong>' + formatDuree(heures) + '</strong>';
