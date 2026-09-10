@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', { 'analytics_storage': 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-J0BQ3BMYLE');
+
+        window.addEventListener('load', function () {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-J0BQ3BMYLE';
+            s.async = true;
+            document.head.appendChild(s);
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | AuKLM</title>
+    <meta name="description" content="Les coulisses du projet AuKLM : méthodologie, découvertes et analyses sur le bruit et le calme à Paris.">
+    <meta property="og:title" content="Blog | AuKLM">
+    <meta property="og:description" content="Les coulisses du projet AuKLM : méthodologie, découvertes et analyses sur le bruit et le calme à Paris.">
+    <meta property="og:image" content="https://auklm.app/og-image.png">
+    <meta property="og:url" content="https://auklm.app/blog.html">
+    <link rel="canonical" href="https://auklm.app/blog.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Blog AuKLM",
+        "url": "https://auklm.app/blog.html",
+        "publisher": { "@type": "Organization", "name": "AuKLM" }
+    }
+    </script>
+
+    <style>
+        .container { max-width: 700px; }
+        h1 { color: var(--teal); font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 5px; }
+        .subtitle { font-size: 1.1rem; opacity: 0.8; margin-bottom: 30px; }
+
+        .post-card {
+            display: block;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(168, 218, 220, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 18px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+        }
+        .post-card:hover { border-color: rgba(168, 218, 220, 0.4); }
+        .post-card h2 { color: var(--teal); margin: 0 0 8px; font-size: 1.2rem; }
+        .post-date { font-size: 0.8rem; opacity: 0.6; margin-bottom: 10px; }
+        .post-excerpt { font-size: 0.95rem; line-height: 1.6; opacity: 0.9; margin: 0; }
+    </style>
+</head>
+<body>
+
+    <div id="cookie-banner">
+        <p>🍪 <strong>AuKLM respecte votre calme.</strong> Nous utilisons des cookies pour analyser l'audience et améliorer votre expérience.</p>
+        <div class="cookie-actions">
+            <button class="btn-cookie-accept" onclick="acceptCookies()">Tout accepter</button>
+            <button class="btn-cookie-deny" onclick="denyCookies()">Continuer sans accepter</button>
+        </div>
+    </div>
+
+    <div id="burger-menu" onclick="toggleMenu()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div id="menu-overlay">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="carte-calme-paris.html">🗺️ Carte du calme</a>
+        <a href="carte.html">📍 CartoKLM</a>
+        <a href="blog.html">📝 Blog</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="bruit-prevention-sante.html">🏥 Prévention</a>
+        <a href="ressources.html">🔗 Ressources</a>
+        <a href="contact.html">✉️ Contact</a>
+        <div class="menu-close" onclick="toggleMenu()">Fermer</div>
+    </div>
+
+    <div class="container" role="main">
+        <h1>Le blog AuKLM</h1>
+        <p class="subtitle">Méthodologie, découvertes et coulisses du projet.</p>
+
+        <a href="blog-carte-calme-paris.html" class="post-card">
+            <div class="post-date">31 juillet 2026</div>
+            <h2>J'ai calculé le score de calme de 4 000 rues parisiennes — voici ce que ça révèle</h2>
+            <p class="post-excerpt">Comment croiser plusieurs jeux de données officielles (Bruitparif, OpenStreetMap, Ville de Paris) pour estimer le calme d'une rue, et ce que ça révèle sur Paris — de la Place des Vosges à Bastille.</p>
+        </a>
+
+        <a href="blog-quest-ce-que-auklm.html" class="post-card">
+            <div class="post-date">17 juillet 2026</div>
+            <h2>Qu'est-ce que AuKLM.app ?</h2>
+            <p class="post-excerpt">Présentation du projet : une carte collaborative citoyenne pour signaler le bruit et retrouver le calme dans son quartier, en un clic et sans compte.</p>
+        </a>
+
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(168, 218, 220, 0.2); text-align: center; font-size: 0.85rem; opacity: 0.7;">
+            <a href="a-propos.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">À propos</a>
+            <a href="cartes-europe.html" style="color: var(--teal); text-decoration: none; margin-right: 12px; padding: 8px 4px; display: inline-block;">Cartes d'Europe</a>
+            <a href="politique-confidentialite.html" style="color: var(--teal); text-decoration: none; padding: 8px 4px; display: inline-block;">Politique de confidentialité</a>
+        </div>
+
+        <div class="footer">© 2026 AUKLM.APP — LES DONNÉES AU SERVICE DU CALME</div>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>
