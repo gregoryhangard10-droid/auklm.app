@@ -648,6 +648,7 @@
                 geneStatus.style.color = "#6ECB63";
                 geneStatus.innerHTML = "✅ Merci ! Votre signalement a bien été envoyé.<br><br><a href='carte.html' style='color: var(--teal); text-decoration: underline; font-weight: bold;'>Et retrouvez votre signalement sur la CartoKLM →</a>";
                 document.getElementById('commentaire').value = '';
+                if (typeof gtag === 'function') { gtag('event', 'signalement_envoye', { ressenti: selectedGene, source: source }); }
             }).catch(function () {
                 geneStatus.style.color = "#E63946";
                 geneStatus.innerHTML = "❌ Erreur de connexion, réessayez.";
@@ -739,6 +740,7 @@
                 totalFrameCount = 0;
                 let timeLeft = 10;
 
+                if (typeof gtag === 'function') { gtag('event', 'testeur_bruit_demarre', {}); }
                 startBtn.style.display = 'none';
                 timerDisplay.style.display = 'block';
                 statusText.innerText = "Analyse en cours...";
@@ -807,6 +809,7 @@
                         statusText.innerHTML = `<strong>${result.v}</strong>`;
                         adviceText.innerText = result.a;
 
+                        if (typeof gtag === 'function') { gtag('event', 'testeur_bruit_termine', { niveau_db: finalValue }); }
                         startBtn.innerText = "Refaire une mesure";
                         startBtn.style.display = 'inline-block';
                     }

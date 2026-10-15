@@ -567,6 +567,7 @@
 
             matchStreets.forEach(function (s) {
                 addResultRow(s.n, '📍 rue — ' + s.s + '/100', function () {
+                    if (typeof gtag === 'function') { gtag('event', 'recherche_calme', { type: "rue", lieu: s.n }); }
                     showRues();
                     const marker = rueMarkers[s.n];
                     if (marker) {
@@ -581,6 +582,7 @@
 
             matchLieux.forEach(function (p) {
                 addResultRow(p.name, '🌳 parc — ' + p.score_calme + '/100', function () {
+                    if (typeof gtag === 'function') { gtag('event', 'recherche_calme', { type: "parc", lieu: p.name }); }
                     showLieux();
                     const marker = lieuMarkers[p.name];
                     if (marker) {
