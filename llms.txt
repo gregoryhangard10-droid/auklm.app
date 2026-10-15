@@ -13,6 +13,13 @@ AuKLM est un site gratuit et anonyme qui permet à chacun de signaler en quelque
 - [Prévention et santé](https://auklm.app/bruit-prevention-sante.html): Impacts du bruit sur la santé et conseils de prévention
 - [Ressources](https://auklm.app/ressources.html): Organismes et associations de lutte contre le bruit
 
+## Blog
+
+- [Quand faire son marché à Paris pour éviter la foule ?](https://auklm.app/blog-quand-faire-son-marche.html): Analyse des 72 marchés alimentaires parisiens : jours, horaires, plus grands marchés et quartiers calmes alentour (15 octobre 2026)
+- [Quel est l'arrondissement le plus calme de Paris ?](https://auklm.app/blog-arrondissements-calmes.html): Classement des 20 arrondissements par score de calme moyen (10 septembre 2026)
+- [Le score de calme de 4 000 rues parisiennes](https://auklm.app/blog-carte-calme-paris.html): Méthode de croisement des données ouvertes (Bruitparif, OpenStreetMap, Ville de Paris) et enseignements (31 juillet 2026)
+- [Qu'est-ce que AuKLM.app ?](https://auklm.app/blog-quest-ce-que-auklm.html): Présentation du projet : carte collaborative citoyenne pour signaler le bruit et retrouver le calme (17 juillet 2026)
+
 ## Optional
 
 - [À propos](https://auklm.app/a-propos.html): Mission et origine du projet AuKLM
