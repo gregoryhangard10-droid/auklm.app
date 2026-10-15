@@ -417,11 +417,11 @@
             <div class="oms-scale">
                 <div class="scale-point quiet" id="scale-1">&lt; 45dB<br>Calme</div>
                 <div class="scale-point moderate" id="scale-2">45-65dB<br>Normal</div>
-                <div class="scale-point high" id="scale-3">65-80dB<br>Élevé</div>
-                <div class="scale-point danger" id="scale-4">&gt; 80dB<br>Danger</div>
+                <div class="scale-point high" id="scale-3">65-85dB<br>Élevé</div>
+                <div class="scale-point danger" id="scale-4">&gt; 85dB<br>Danger</div>
             </div>
 
-            <p class="db-disclaimer">Mesure indicative non calibrée, basée sur le micro de votre appareil avec pondération fréquentielle de type A. Elle ne remplace pas un sonomètre professionnel. Vous pouvez inclure ce résultat dans le champ commentaire de votre signalement si vous le souhaitez.</p>
+            <p class="db-disclaimer">Mesure indicative non calibrée, basée sur le micro de votre appareil avec pondération fréquentielle de type A. Le résultat affiché est le niveau moyen sur 10 secondes. Elle ne remplace pas un sonomètre professionnel. Vous pouvez inclure ce résultat dans le champ commentaire de votre signalement si vous le souhaitez.</p>
         </details>
 
         <div style="text-align: center; margin-top: 40px;">
@@ -636,7 +636,8 @@
            BLOC 2 — Testeur de décibels bêta (secondaire, amélioré)
            - Pondération fréquentielle de type A (approximation dBA)
            - Détection de saturation du micro
-           - Médiane sur la fenêtre de mesure plutôt que moyenne brute
+           - Niveau moyen énergétique (Leq) sur la fenêtre de mesure, comme un sonomètre
+           - Micro brut : contrôle automatique du gain et suppression de bruit désactivés
            ========================================================== */
         let audioContext, analyser, microphone, javascriptNode;
         let dbFrames = [];
@@ -653,10 +654,13 @@
 
         // Décalage de calibration empirique : les micros de smartphone ne sont
         // pas calibrés en dB SPL absolu. Cette valeur rapproche le résultat
-        // affiché de l'échelle OMS utilisée ci-dessous, mais reste indicative.
+        // affiché de l'échelle d'ambiance utilisée ci-dessous, mais reste indicative.
+        // Valeur à recaler par comparaison avec un sonomètre (voir test terrain).
         const CALIBRATION_OFFSET = 100;
 
-        // Pondération fréquentielle de type A (approximation de la norme CEI 61672)
+        // Pondération fréquentielle de type A (norme CEI 61672).
+        // Retourne le gain en AMPLITUDE, normalisé à 0 dB à 1 kHz (d'où le facteur
+        // 1,2589 = 10^(2/20) : la formule brute donne -2 dB à 1 kHz).
         function aWeightingGain(f) {
             const f2 = f * f;
             const c1 = 12194.217 * 12194.217;
@@ -664,35 +668,47 @@
             const den = (f2 + 20.598997 * 20.598997) *
                         Math.sqrt((f2 + 107.65265 * 107.65265) * (f2 + 737.86223 * 737.86223)) *
                         (f2 + c1);
-            return num / den;
+            return (num / den) * 1.2589;
         }
 
         function updateScale(db) {
             document.querySelectorAll('.scale-point').forEach(el => el.classList.remove('active'));
             if (db < 45) document.getElementById('scale-1').classList.add('active');
             else if (db < 65) document.getElementById('scale-2').classList.add('active');
-            else if (db < 80) document.getElementById('scale-3').classList.add('active');
+            else if (db < 85) document.getElementById('scale-3').classList.add('active');
             else document.getElementById('scale-4').classList.add('active');
         }
 
         function getVerdict(db) {
             if (db < 45) return { v: "Calme absolu 🤫", a: "Idéal pour le repos et la concentration." };
-            if (db < 65) return { v: "Ambiance paisible ✅", a: "Niveau sonore urbain très acceptable." };
-            if (db < 80) return { v: "Nuisance marquée ⚠️", a: "Attention : l'exposition prolongée fatigue l'organisme." };
-            return { v: "Danger auditif 🚨", a: "Risque de dommages irréversibles. Éloignez-vous !" };
+            if (db < 65) return { v: "Ambiance modérée ✅", a: "Niveau courant en ville. Pour le bruit routier, l'OMS recommande de rester sous 53 dB en moyenne." };
+            if (db < 85) return { v: "Nuisance marquée ⚠️", a: "Attention : l'exposition prolongée fatigue l'organisme." };
+            return { v: "Niveau dangereux 🚨", a: "À partir de 85 dB, une exposition prolongée peut abîmer l'audition. Éloignez-vous ou protégez-vous." };
         }
 
-        function median(arr) {
-            const sorted = [...arr].sort((a, b) => a - b);
-            const mid = Math.floor(sorted.length / 2);
-            return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+        // Niveau équivalent continu (Leq) : moyenne en énergie des niveaux mesurés.
+        // C'est la valeur utilisée par un sonomètre pour une mesure moyennée ; elle suit
+        // les pics (musique, voix) mieux que la médiane, qui les sous-estime.
+        function leq(arr) {
+            const meanEnergy = arr.reduce((sum, db) => sum + Math.pow(10, db / 10), 0) / arr.length;
+            return 10 * Math.log10(meanEnergy);
         }
 
         startBtn.onclick = function () {
-            navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+            // Désactive les traitements automatiques du navigateur (contrôle automatique
+                // du gain, suppression de bruit, annulation d'écho) : ils modifient le niveau
+                // sonore et faussent la mesure, surtout dans un lieu bruyant.
+                navigator.mediaDevices.getUserMedia({
+                    audio: {
+                        echoCancellation: false,
+                        noiseSuppression: false,
+                        autoGainControl: false
+                    }
+                }).then(function (stream) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 analyser = audioContext.createAnalyser();
                 analyser.fftSize = 2048;
+                analyser.smoothingTimeConstant = 0; // pas de lissage : le Leq est calculé sur les valeurs brutes
                 microphone = audioContext.createMediaStreamSource(stream);
                 javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
@@ -733,7 +749,7 @@
                         const freq = i * binHz;
                         const magnitude = Math.pow(10, freqData[i] / 20);
                         const gain = aWeightingGain(freq);
-                        const weighted = magnitude * Math.sqrt(gain);
+                        const weighted = magnitude * gain;
                         weightedEnergy += weighted * weighted;
                     }
                     const dbA = 10 * Math.log10(weightedEnergy || 1e-12) + CALIBRATION_OFFSET;
@@ -753,7 +769,7 @@
                         javascriptNode.disconnect();
 
                         const isClipped = totalFrameCount > 0 && (clipFrameCount / totalFrameCount) > 0.1;
-                        let finalValue = dbFrames.length ? Math.round(median(dbFrames)) : 0;
+                        let finalValue = dbFrames.length ? Math.round(leq(dbFrames)) : 0;
 
                         if (isClipped) {
                             clipWarning.style.display = 'block';
